@@ -32,7 +32,7 @@
     </form>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+<!-- <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxFlex="100">
         <div class="mat-elevation-z8">
             <table class="dark" mat-table [dataSource]="datalist">
@@ -44,10 +44,7 @@
                     <th mat-header-cell *matHeaderCellDef> EntityType </th>
                     <td mat-cell *matCellDef="let element"> {{element.entityType}} </td>
                 </ng-container>
-                <!-- <ng-container matColumnDef="categoryName">
-                    <th mat-header-cell *matHeaderCellDef> CategoryName </th>
-                    <td mat-cell *matCellDef="let element"> {{element.categoryGMV }} </td>
-                </ng-container> -->
+             
                 <ng-container matColumnDef="categoryYear">
                     <th mat-header-cell *matHeaderCellDef> CategoryYear </th>
                     <td mat-cell *matCellDef="let element"> {{element.categoryYear}} </td>
@@ -63,4 +60,23 @@
             <mat-paginator [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
         </div>
     </div>
-</div>
+</div> -->
+<table id="customers" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">CategoryId</th>
+        <th scope="col">EntityType</th>
+        <th scope="col">CategoryYear</th>
+        <th scope="col">TransactionCount</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of datalist">
+        <td>{{item.categoryId}}</td>
+        <td>{{item.entityType}}</td>
+        <td>{{item.categoryYear}}</td>
+        <td>{{item.categoryTransactionCount | json}}</td>
+      </tr>
+    </tbody>
+  </table>

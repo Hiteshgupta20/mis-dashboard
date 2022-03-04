@@ -21,3 +21,34 @@ table {
     display: flex;
     align-items: center;
   }
+  td {
+    text-align: center;
+  }
+  table{
+    border: 1px solid gray;
+    border-radius: 2px;
+    background-color: rgb(255, 236, 251) ;
+  }
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: white;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #c056a9;
+    color: white;
+  }
+  

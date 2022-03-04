@@ -1,0 +1,48 @@
+<div class="select">
+   
+    <form [formGroup]="dropdown" (ngSubmit)="getdata()">
+
+        <mat-form-field style="margin-left: 10px;">
+            <mat-label for="name">StartYear </mat-label>
+            <mat-select class="form-control" formControlName="startYear" required>
+                <mat-option value="" disabled> select Date </mat-option>
+                <mat-option *ngFor="let item of startYear" value="{{item.year}}"> {{item.year}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field style="margin-left: 10px;">
+            <mat-label for="name">EndYear </mat-label>
+            <mat-select class="form-control" formControlName="endYear" required>
+                <mat-option value="" disabled> select Date </mat-option>
+                <!-- <mat-option value="2022-01-01"> 2022</mat-option> -->
+                <mat-option *ngFor="let item of endYear" value="{{item.year}}"> {{item.year}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="submit-btn" type="submit" style="margin-left: 10px;" >
+            submit</button>
+
+    </form>
+</div>
+<mat-toolbar class="toolbar" color="primary">
+    <span style="margin-left: 40%;">BalanceSheet</span>
+  </mat-toolbar>
+  <table id="customers" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">asset</th>
+        <th scope="col">assetCount</th>
+        <th scope="col">equityAndLiabilities</th>
+        <th scope="col">Count</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of datalist">
+        <td>{{item.entityType}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.category}}</td>
+      </tr>
+    </tbody>
+  </table>

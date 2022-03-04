@@ -13,11 +13,19 @@ import { DashboardService } from './modules/dashboard.service';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { GmvcountComponent } from './modules/gmvcount/gmvcount.component';
+import { CashflowComponent } from './modules/cashflow/cashflow.component';
+import { IncomesheetComponent } from './modules/incomesheet/incomesheet.component';
+import { BalancesheetComponent } from './modules/balancesheet/balancesheet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    GmvcountComponent,
+    CashflowComponent,
+    IncomesheetComponent,
+    BalancesheetComponent,
     
     
   ],

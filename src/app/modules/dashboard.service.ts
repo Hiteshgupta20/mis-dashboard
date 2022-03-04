@@ -16,7 +16,22 @@ getdatamonth(data){
   let url=`https://mis.nownowpay.com.ng/mis/findByEntityTypeAndMonth?startYear=${data.startYear}&entityType=${data.entityType}`
   return this.http.get(url);
 }
-
+getdatagmv(data){
+  let url=`https://mis.nownowpay.com.ng/mis/getCategoryByYear?startYear=${data.startYear}&endYear=2022`
+  return this.http.get(url);
+}
+getdatacash(data){
+  let url=`https://mis.nownowpay.com.ng/mis/getCashFlowStatementByYear?startYear=${data.startYear}&endYear=${data.endYear}`
+  return this.http.get(url);
+}
+getdataincome(data){
+  let url=`https://mis.nownowpay.com.ng/mis/getIncomeStatementServiceByYear?startYear=${data.startYear}&endYear=${data.endYear}`
+  return this.http.get(url);
+}
+getdatabalance(data){
+  let url=`https://mis.nownowpay.com.ng/mis/getBalanceSheetByYear?startYear=${data.startYear}&endYear=${data.endYear}`
+  return this.http.get(url);
+}
   bigChart() {
     return [{
       name: 'Asia',

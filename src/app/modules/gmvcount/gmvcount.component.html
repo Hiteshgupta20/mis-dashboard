@@ -1,0 +1,46 @@
+<div>
+    <form [formGroup]="dropdown" (ngSubmit)="getdatamonth()">
+        <mat-form-field>
+            <mat-label for="name">Select EntityType </mat-label>
+            <mat-select class="form-control" formControlName="entityType" required>
+                <mat-option value="" disabled> select entityType</mat-option>
+                <mat-option value="85"> consumer</mat-option>
+                <mat-option value="20"> merchant</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field style="margin-left: 10px;">
+            <mat-label for="name">Year </mat-label>
+            <mat-select class="form-control" formControlName="startYear" required>
+                <mat-option value="" disabled> select Date </mat-option>
+                <mat-option *ngFor="let item of startYear" value="{{item.year}}"> {{item.year}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" class="submit-btn" type="submit" style="margin-left: 10px;" >
+            submit</button>
+
+    </form>
+</div>
+<mat-toolbar class="toolbar" color="primary">
+    <span style="margin-left: 40%;"> GMV Count </span>
+  </mat-toolbar>
+  <table id="customers" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Category</th>
+        <th scope="col">Count</th>
+        <th scope="col">GMV</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataToShow">
+        <td>{{item.entityType}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.count | json}}</td>
+        <td>{{item.count}}</td>
+      </tr>
+    </tbody>
+  </table>

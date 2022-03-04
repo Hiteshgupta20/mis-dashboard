@@ -101,7 +101,6 @@ export class PostsComponent implements OnInit {
   { year: "2021", value: "2021-01-01" },
   { year: "2022", value: "2022-01-01" },
   ];
-  dataSource = new MatTableDataSource(this.transactions)
   dropdown = new FormGroup({
     entityType: new FormControl(""),
     startYear: new FormControl(""),
@@ -114,9 +113,7 @@ export class PostsComponent implements OnInit {
   categoryMonthly = [];
 
   /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.total).reduce((acc, value) => acc + value, 0);
-  }
+ 
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
