@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { objectEach } from 'highcharts';
 import { DashboardService } from '../dashboard.service';
 
 export interface Transaction {
-  count:string;
-  category:string;  
+  count: string;
+  category: string;
   jan: number;
   feb: number;
   mar: number;
@@ -26,47 +27,24 @@ export interface Transaction {
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  displayedColumns = ['count','category','jan',
-  'feb', 
-  // 'mar', 
-  // 'apr', 
-  // 'may', 
-  // 'jun', 
-  // 'jul', 
-  // 'aug', 
-  // 'sep', 
-  // 'oct', 
-  // 'nov', 
-  // 'dec', 
-  //  'total'
-];
-  
+  displayedColumns = ['count', 'category', 'jan',
+    'feb',
+    // 'mar', 
+    // 'apr', 
+    // 'may', 
+    // 'jun', 
+    // 'jul', 
+    // 'aug', 
+    // 'sep', 
+    // 'oct', 
+    // 'nov', 
+    // 'dec', 
+    //  'total'
+  ];
+
   transactions: Transaction[] = [
-    {count:'merchant',category:'airtime',jan: 2,
-    feb: 3,
-    mar: 5,
-    apr: 5,
-    may: 6,
-    jun: 5,
-    jul: 7,
-    aug: 9,
-    sep: 3,
-    oct: 7,
-    nov: 45,
-    dec: 4,
-     total: 7},{count:'merchant',category:'insurance',jan: 25,
-     feb: 3,
-     mar: 5,
-     apr: 5,
-     may: 6,
-     jun: 5,
-     jul: 7,
-     aug: 9,
-     sep: 3,
-     oct: 7,
-     nov: 45,
-     dec: 4,
-      total: 4},{count:'merchant',category:'pos transactions',jan: 4,
+    {
+      count: 'merchant', category: 'airtime', jan: 2,
       feb: 3,
       mar: 5,
       apr: 5,
@@ -78,9 +56,38 @@ export class PostsComponent implements OnInit {
       oct: 7,
       nov: 45,
       dec: 4,
-       total: 5},
-     
-   
+      total: 7
+    }, {
+      count: 'merchant', category: 'insurance', jan: 25,
+      feb: 3,
+      mar: 5,
+      apr: 5,
+      may: 6,
+      jun: 5,
+      jul: 7,
+      aug: 9,
+      sep: 3,
+      oct: 7,
+      nov: 45,
+      dec: 4,
+      total: 4
+    }, {
+      count: 'merchant', category: 'pos transactions', jan: 4,
+      feb: 3,
+      mar: 5,
+      apr: 5,
+      may: 6,
+      jun: 5,
+      jul: 7,
+      aug: 9,
+      sep: 3,
+      oct: 7,
+      nov: 45,
+      dec: 4,
+      total: 5
+    },
+
+
   ];
   startYear: any = [{ year: "2012", value: "2012-01-01" },
   { year: "2013", value: "2013-01-01" },
@@ -104,6 +111,8 @@ export class PostsComponent implements OnInit {
   dataToShow: any = [];
   categoryNamelist: any;
 
+  categoryMonthly = [];
+
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     return this.transactions.map(t => t.total).reduce((acc, value) => acc + value, 0);
@@ -113,33 +122,47 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
   }
   getdatamonth() {
+    this.dataToShow = [];
     let req: any = {
       'entityType': this.dropdown.controls['entityType'].value,
       'startYear': this.dropdown.controls['startYear'].value,
     }
     console.log(req);
     this.dashboardService.getdatamonth(req).subscribe((data: any) => {
+
       console.log(data)
       if (data.statusCode == 200) {
         let res = data.body
         this.datalist = res;
-        let categoryMonthly = Object.keys(this.datalist[0].categoryCountByMonth);
-        
-        for(let i =0;i<categoryMonthly.length;i++)
-          this.dataToShow.push({
-            entityType: this.datalist[0].entityType,
-            category: categoryMonthly[i]
-          });
-        // console.log(data.body[0].categoryCountByMonth);
-        
-        this.categoryNamelist= Object.keys(data.body[0].categoryCountByMonth)
-        console.log(this.categoryNamelist);
-        
+        this.categoryMonthly = Object.keys(this.datalist[0].categoryCountByMonth);
+        // console.log(categoryMonthlyCount);
+        for (let i = 0; i < this.categoryMonthly.length; i++) {
+          const element = this.categoryMonthly[i];
+
+          let objCount = {
+            count: this.dropdown.controls['entityType'].value,
+            category: element,
+            janCount: this.getMonthValue(0, element),
+            febCount: this.getMonthValue(1, element),
+            marCount: this.getMonthValue(2, element),
+            aprCount: this.getMonthValue(3, element),
+            mayCount: this.getMonthValue(4, element),
+            junCount: this.getMonthValue(5, element),
+            julyCount: this.getMonthValue(6, element),
+            augCount: this.getMonthValue(7, element),
+            sepCount: this.getMonthValue(8, element),
+            octCount: this.getMonthValue(9, element),
+            novCount: this.getMonthValue(10, element),
+            decCount: this.getMonthValue(11, element),
+          }
+          this.dataToShow.push(objCount);
+        }
       }
-
-
-
     })
 
+  }
+
+  getMonthValue(index, categroy): any {
+    return this.datalist[index]['categoryCountByMonth'][categroy];
   }
 }

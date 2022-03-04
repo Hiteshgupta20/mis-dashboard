@@ -16,15 +16,15 @@
 
             </mat-select>
         </mat-form-field>
-        
-        <button mat-raised-button color="primary" class="submit-btn" type="submit" style="margin-left: 10px;" >
+
+        <button mat-raised-button color="primary" class="submit-btn" type="submit" style="margin-left: 10px;">
             submit</button>
 
     </form>
 </div>
-    <mat-toolbar class="toolbar" color="primary">
-      <span style="margin-left: 40%;"> Transaction Count </span>
-    </mat-toolbar>
+<mat-toolbar class="toolbar" color="primary">
+    <span style="margin-left: 40%;"> Transaction Count </span>
+</mat-toolbar>
 <!-- <div class="example-container mat-elevation-z8">
     <table class="dark" mat-table [dataSource]="dataToShow">
 
@@ -147,28 +147,33 @@
 </div> -->
 <table class="table table-striped">
     <thead>
-      <tr>
-        <th scope="col">count</th>
-        <th scope="col">category</th>
-        <th scope="col">jan</th>
-        <th scope="col">feb</th>
-        <th scope="col">mar</th>
-        <th scope="col">apr</th>
-        <th scope="col">may</th>
-        <th scope="col">jun</th>
-        <th scope="col">jul</th>
-        <th scope="col">aug</th>
-        <th scope="col">sep</th>
-        <th scope="col">oct</th>
-        <th scope="col">nov</th>
-        <th scope="col">dec</th>
-      </tr>
+        <tr>
+            <th scope="col">count</th>
+            <th scope="col">category</th>
+            <th scope="col">jan</th>
+            <th scope="col">feb</th>
+            <th scope="col">mar</th>
+            <th scope="col">apr</th>
+            <th scope="col">may</th>
+            <th scope="col">jun</th>
+            <th scope="col">jul</th>
+            <th scope="col">aug</th>
+            <th scope="col">sep</th>
+            <th scope="col">oct</th>
+            <th scope="col">nov</th>
+            <th scope="col">dec</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of dataToShow">
-        <td>{{item.entityType}}</td>
-        <td>{{item.category}}</td>
-        <td></td>
-      </tr>
+        <tr *ngFor="let item of dataToShow">
+            <td>{{item.count}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.janCount}}</td>
+            <td>{{item.febCount}}</td>
+            <td>{{item.marCount}}</td>
+           
+            
+            <td></td>
+        </tr>
     </tbody>
-  </table>
+</table>
